@@ -11,6 +11,14 @@
     <form action="process_form.php" method="POST">
       <label for="name">Username:</label>
       <input type="text" id="name" name="name" required /><br /><br />
+
+      <label for="account_type">Account Type:</label>
+      <select id="account_type" name="account_type">
+        <option value="checking">Checking</option>
+        <option value="credit_card">Credit Card</option>
+        <option value="savings">Savings</option></select
+      ><br /><br />
+
       <label for="account_id">Bank Account ID:</label>
       <input
         type="text"
@@ -19,6 +27,7 @@
         required
         pattern="[0-9]{12,14}"
       /><br /><br />
+
       <label for="email">Email:</label>
       <input type="email" id="email" name="email" required /><br /><br />
 
@@ -29,6 +38,7 @@
         name="password"
         required
       /><br /><br />
+
       <p>Already have an account? <a href="login.html">Log in</a></p>
       <input type="submit" value="Create Account" />
     </form>

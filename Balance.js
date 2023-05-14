@@ -1,4 +1,4 @@
-import trigger from Content.js
+import { trigger } from './Content.js'
 
 //when extentsion is triggered, bank balance will display
 if (trigger !== undefined || trigger === true) {

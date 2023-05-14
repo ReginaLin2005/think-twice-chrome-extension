@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h2>Create an Account</h2>
+    <form>
+      <label for="name">Username:</label>
+      <input type="text" id="name" name="name" required /><br /><br />
+
+      <label for="customer_id">Bank Customer ID:</label>
+      <input
+        type="text"
+        id="customer_id"
+        name="customer_id"
+        required
+        
+      /><br /><br />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required /><br /><br />
+
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        required
+      /><br /><br />
+
+      <p>Already have an account? <a href="login.html">Log in</a></p>
+      <input type="submit" value="Create Account" />
+    </form>
+  </body>
+  <script>
+    //example of account balance data, but this will actually show
+    // when the extention is triggered, will remove this later
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+      const json = JSON.stringify(Object.fromEntries(formData.entries()));
+
+      axios.post('http://localhost:5000/user_balance', json, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+      })
+        .then(response => {
+          const accountsList = document.createElement('ul');
+          response.data.forEach(account => {
+          const accountItem = document.createElement('li');
+          accountItem.innerHTML = `Account Type: ${account.type}, Balance: ${account.balance}`;
+          accountsList.appendChild(accountItem);
+          });
+          document.body.appendChild(accountsList);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+});
+    </script>
+</html>

@@ -5,7 +5,6 @@
   "version": "1.0.0",
 
   "action": {
-    "default_icon": "logo.html",
     "default_popup": "index.html"
   },
 

@@ -56,6 +56,7 @@ yesButtons.forEach(btn => {
 
 noButtons.forEach((btn, index) => {
   btn.addEventListener('click', () => {
+    const hiddenMessage = questions[index].querySelector('.hidden-message');
     if (index === 0) {
       const customHTML = `
         <p>If the item you want to buy is not within your budget, it's likely an impulsive buy. Pause and consider the following exercises:</p>
@@ -68,9 +69,13 @@ noButtons.forEach((btn, index) => {
       showResults(0, customHTML);
     } else {
       score++;
-      nextBtn.style.display = 'inline-block';
       btn.style.display = 'none';
       yesButtons[index].style.display = 'none';
+      nextBtn.style.display = 'inline-block';
+
+      if (hiddenMessage) {
+        hiddenMessage.style.display = 'block';
+      }
     }
   });
 });
